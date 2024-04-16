@@ -1,5 +1,5 @@
-import Image from "next/image";
+import Terminal from "@/app/terminal";
 
 export default function Home() {
-  return <div id="terminal">terminal</div>;
+  return <Terminal />;
 }
