@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Command from "@/app/command";
 
 export default function Terminal() {
   const [blockList, setBlockList] = useState<React.ReactNode[]>([
@@ -29,7 +30,7 @@ export default function Terminal() {
   return (
     <div
       id="terminal"
-      className="font-mono text-sm flex flex-col items-start m-4 px-4 gap-2 flex-grow"
+      className="font-mono text-sm flex flex-col items-start m-4 px-4 flex-grow"
       onClick={handleClick}
       onKeyDown={handleEnter}
     >
@@ -60,19 +61,20 @@ function Block(BlockProps: { id: number; name: string; locate: string }) {
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full leading-6">
       <div className="w-full flex flex-row gap-2">
         <text className="text-accent-300">{BlockProps.name} </text>
         <text className="text-accent2-300">{BlockProps.locate} </text>
         <text className="text-complementary">{">"} </text>
         <input
+          className="flex-grow text-complementary bg-transparent focus:outline-none"
           readOnly={readonly}
           id={BlockProps.id.toString()}
           type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={handleEnter}
-          className="flex-grow text-complementary bg-transparent focus:outline-none"
+          autoComplete="off"
         />
       </div>
       {respond}
@@ -84,8 +86,12 @@ function Block(BlockProps: { id: number; name: string; locate: string }) {
 function Respond(RespondProps: { value: string }) {
   switch (RespondProps.value) {
     case "help":
-      return <div>Helping</div>;
+      return <Command.Help />;
     default:
-      return <div>Command not found</div>;
+      if (RespondProps.value) {
+        return <div>{RespondProps.value}: command not found</div>;
+      } else {
+        return null;
+      }
   }
 }
