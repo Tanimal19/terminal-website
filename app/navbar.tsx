@@ -9,7 +9,7 @@ export default function Navbar() {
       className="font-sans flex flex-row items-center justify-between px-4 py-3 border-b-2 border-complementary dark:border-complementaryDark"
     >
       <a href="/">
-        <Icon.Logo />
+        <Icon size="size-8" name="logo" />
       </a>
       <div
         id="nav-list"

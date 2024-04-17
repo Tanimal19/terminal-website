@@ -23,7 +23,11 @@ export default function ThemeButton() {
 
   return (
     <button onClick={changeTheme}>
-      {theme === "light" ? <Icon.Sun /> : <Icon.Moon />}
+      {theme === "light" ? (
+        <Icon size="size-8" name="sun" />
+      ) : (
+        <Icon size="size-8" name="moon" />
+      )}
     </button>
   );
 }
