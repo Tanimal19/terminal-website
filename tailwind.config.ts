@@ -19,7 +19,8 @@ const config: Config = {
         complementary: colors.neutral['800'],
         primaryDark: colors.neutral['800'],
         complementaryDark: colors.neutral['50'],
-        accent: colors.indigo
+        accent: colors.indigo,
+        error: colors.red
       },
     },
   },

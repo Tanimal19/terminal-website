@@ -6,7 +6,7 @@ import Icon from "@/app/icon";
 
 export default function Terminal() {
   const [blockList, setBlockList] = useState<React.ReactNode[]>([
-    <Welcome />,
+    <Banner />,
     <Block id={1} name="guest" locate="~/website" />,
   ]);
   const currentId: number = Math.ceil(blockList.length / 2);
@@ -34,7 +34,7 @@ export default function Terminal() {
   }
 
   // handle enter press
-  function handleEnter(e: React.KeyboardEvent<HTMLInputElement>) {
+  function handleKey(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
       // get input value and set readonly
       const inputEle: HTMLInputElement = document.getElementById(
@@ -50,6 +50,10 @@ export default function Terminal() {
       const args: string[] = inputValue.split(" ");
       let Respond: React.ReactNode;
       switch (args[0]) {
+        case "banner":
+          Respond = <Banner />;
+          break;
+
         case "cat":
           switch (args[1]) {
             case "hobby":
@@ -73,7 +77,16 @@ export default function Terminal() {
               break;
 
             default:
-              Respond = <text>{args[1]}: file not found</text>;
+              Respond = (
+                <text>
+                  <span className="text-error-400">
+                    {args[1]}: No such file or directory
+                  </span>
+                  <br />
+                  maybe use <span className="text-accent-400">ls</span> to list
+                  all files?
+                </text>
+              );
           }
           break;
 
@@ -82,11 +95,48 @@ export default function Terminal() {
           break;
 
         case "goto":
+          switch (args[1]) {
+            case "portfolio":
+              window.open(urlList[0], "_blank");
+              Respond = <text>goto portfolio</text>;
+              break;
+
+            case "blog":
+              window.open(urlList[1], "_blank");
+              Respond = <text>goto blog</text>;
+              break;
+
+            case "github":
+              window.open(urlList[2], "_blank");
+              Respond = <text>goto github</text>;
+              break;
+
+            case "linkedin":
+              window.open(urlList[3], "_blank");
+              Respond = <text>goto linkedin</text>;
+              break;
+
+            default:
+              Respond = (
+                <text>
+                  <span className="text-error-400">
+                    {args[1]}: Invalid parameter
+                  </span>
+                  <br />
+                  please specify valid parameter:{" "}
+                  <span className="text-accent-400">
+                    portfolio, blog, github, linkedin
+                  </span>
+                </text>
+              );
+          }
           break;
 
         case "help":
           Respond = (
             <text>
+              banner
+              <br />
               cat
               <br />
               clear
@@ -100,10 +150,6 @@ export default function Terminal() {
               sudo
               <br />
               theme
-              <br />
-              welcome
-              <br />
-              whoami
             </text>
           );
           break;
@@ -115,7 +161,7 @@ export default function Terminal() {
         case "sudo":
           Respond = (
             <div>
-              <text>Don't even think about it</text>
+              <text className="text-error-400">Don't even think about it</text>
               <img src="groot.png" className="my-2 size-40" />
             </div>
           );
@@ -123,18 +169,18 @@ export default function Terminal() {
 
         case "theme":
           setTheme(theme === "light" ? "dark" : "light");
-          Respond = <text>Theme change to {theme}</text>;
+          Respond = (
+            <text>change to {theme === "light" ? "dark" : "light"} theme</text>
+          );
           break;
-
-        case "welcome":
-          Respond = <Welcome />;
-          break;
-
-        case "whoami":
 
         default:
           if (args[0]) {
-            Respond = <div>{args[0]}: command not found</div>;
+            Respond = (
+              <text className="text-error-400">
+                {args[0]}: command not found
+              </text>
+            );
           } else {
             Respond = null;
           }
@@ -161,7 +207,7 @@ export default function Terminal() {
       id="terminal"
       className="font-mono text-sm flex flex-col items-start m-4 px-4 flex-grow leading-6"
       onClick={handleClick}
-      onKeyDown={handleEnter}
+      onKeyDown={handleKey}
     >
       {blockList}
     </div>
@@ -197,13 +243,13 @@ function Block(BlockProps: { id: number; name: string; locate: string }) {
   );
 }
 
-function Welcome() {
+function Banner() {
   return (
-    <div className="my-4 flex flex-row gap-4">
+    <div className="my-2 flex flex-row gap-4">
       <img src="Rin_org.png" className="size-40" />
       <div className="flex flex-col items-start justify-start gap-4">
         <text>
-          Oh, Hello. I am Tanimal. Welcome to this terminal website.
+          Oh, Hello. I am Tanimal. banner to this terminal website.
           <br />
           you can know (almost) everything about me here, or maybe find
           something interesting.
@@ -223,3 +269,10 @@ function Welcome() {
     </div>
   );
 }
+
+const urlList = [
+  "https://www.google.com",
+  "https://www.google.com",
+  "https://www.github.com",
+  "https://www.linkedin.com",
+];
