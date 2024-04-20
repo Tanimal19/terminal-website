@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Icon from "@/app/icon";
-import ThemeButton from "@/app/themeButton";
+import Icon from "@/app/assets/icon";
+import ThemeButton from "@/app/assets/themeButton";
 
 export default function Navbar() {
   return (

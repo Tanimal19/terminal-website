@@ -7,7 +7,7 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 // Local
-import Navbar from "@/app/navbar";
+import Navbar from "@/app/assets/navbar";
 
 // Fonts
 const didact_gothic = Didact_Gothic({

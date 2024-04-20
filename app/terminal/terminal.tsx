@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import Icon from "@/app/icon";
+import Icon from "@/app/assets/icon";
+import { Mali } from "next/font/google";
 
 export default function Terminal() {
   const [blockList, setBlockList] = useState<React.ReactNode[]>([
@@ -276,3 +277,17 @@ const urlList = [
   "https://www.github.com",
   "https://www.linkedin.com",
 ];
+
+const contact: React.ReactNode = (
+  <div>
+    <text>
+      mail: <a href="mailto:tanimal1912@gmail.com">tanimal1912@gmail.com</a>
+    </text>
+    <br />
+    <text>
+      github: <a href=""></a>
+    </text>
+    <text>twitter: </text>
+    <text>linkedin: Bob Cheng</text>
+  </div>
+);
