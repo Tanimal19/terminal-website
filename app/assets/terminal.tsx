@@ -2,13 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import Icon from "@/app/icon";
-import { Mali } from "next/font/google";
+import Image from "next/image";
+import Icon from "@/app/assets/icon";
 
 export default function Terminal() {
   const [blockList, setBlockList] = useState<React.ReactNode[]>([
-    <Banner />,
-    <Block id={1} name="guest" locate="~/website" />,
+    <Banner key={0} />,
+    <Block key={1} id={1} name="guest" locate="~/website" />,
   ]);
   const currentId: number = Math.ceil(blockList.length / 2);
 
@@ -168,9 +168,16 @@ export default function Terminal() {
 
         case "sudo":
           Respond = (
-            <div>
-              <text className="text-error-400">Don't even think about it</text>
-              <img src="groot.png" className="my-2 size-40" />
+            <div className="my-2">
+              <text className="text-error-400">
+                {"Don't even think about it"}
+              </text>
+              <Image
+                src="/groot.png"
+                width={200}
+                height={200}
+                alt="picture of root"
+              />
             </div>
           );
           break;
@@ -196,7 +203,7 @@ export default function Terminal() {
 
       // append response and new block to list
       if (args[0] === "clear") {
-        setReset(reset + 1);
+        setReset(reset - 1);
         setBlockList([
           <Block key={reset} id={1} name="guest" locate="~/website" />,
         ]);
@@ -204,7 +211,12 @@ export default function Terminal() {
         setBlockList([
           ...blockList,
           Respond,
-          <Block id={currentId + 1} name="guest" locate="~/website" />,
+          <Block
+            key={currentId + 1}
+            id={currentId + 1}
+            name="guest"
+            locate="~/website"
+          />,
         ]);
       }
     }
@@ -231,7 +243,7 @@ function Block(BlockProps: { id: number; name: string; locate: string }) {
     if (inputElement) {
       inputElement.focus();
     }
-  }, []);
+  }, [BlockProps.id]);
 
   return (
     <div className="input w-full flex flex-row gap-2">
@@ -255,7 +267,12 @@ function Block(BlockProps: { id: number; name: string; locate: string }) {
 function Banner() {
   return (
     <div className="my-2 flex flex-row gap-4">
-      <img src="pikachu.png" className="h-40" />
+      <Image
+        src="/pikachu.png"
+        width={200}
+        height={200}
+        alt="picture of root"
+      />
       <div className="flex flex-col items-start justify-start gap-4">
         <text>
           Oh, Hello. I am Tanimal. banner to this terminal website.
