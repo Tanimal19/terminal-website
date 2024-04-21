@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import Image from "next/image";
-import Icon from "@/app/assets/icon";
+import Icon from "@/public/icon";
 
 export default function Terminal() {
   const [blockList, setBlockList] = useState<React.ReactNode[]>([
