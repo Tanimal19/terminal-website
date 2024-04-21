@@ -58,15 +58,15 @@ export default function Terminal() {
         case "cat":
           switch (args[1]) {
             case "hobby":
-              Respond = <text>hobby</text>;
+              Respond = <Hobby />;
               break;
 
             case "skill":
-              Respond = <text>skill</text>;
+              Respond = <Skill />;
               break;
 
             case "project":
-              Respond = <text>project</text>;
+              Respond = <Project />;
               break;
 
             case "":
@@ -93,27 +93,18 @@ export default function Terminal() {
 
         case "goto":
           switch (args[1]) {
-            case "home":
+            case "portfolio":
               window.open(urlList[0], "_blank");
               Respond = <text>goto home</text>;
               break;
-            case "portfolio":
-              window.open(urlList[1], "_blank");
-              Respond = <text>goto portfolio...</text>;
-              break;
-
-            case "blog":
-              window.open(urlList[2], "_blank");
-              Respond = <text>goto blog...</text>;
-              break;
 
             case "github":
-              window.open(urlList[3], "_blank");
+              window.open(urlList[1], "_blank");
               Respond = <text>goto github...</text>;
               break;
 
             case "linkedin":
-              window.open(urlList[4], "_blank");
+              window.open(urlList[2], "_blank");
               Respond = <text>goto linkedin...</text>;
               break;
 
@@ -126,7 +117,7 @@ export default function Terminal() {
                   <br />
                   please specify valid parameter:{" "}
                   <span className="text-accent-400">
-                    home, portfolio, blog, github, linkedin
+                    portfolio, github, linkedin
                   </span>
                 </text>
               );
@@ -275,10 +266,7 @@ function Banner() {
       />
       <div className="flex flex-col items-start justify-start gap-4">
         <text>
-          Oh, Hello. I am Tanimal. banner to this terminal website.
-          <br />
-          I built this site to familiarize myself with some frameworks and share
-          my daily life using the terminal.
+          Oh, Hello. I am Tanimal. Welcome to this terminal website.
           <br />
           this website is built with:
         </text>
@@ -288,8 +276,16 @@ function Banner() {
           <Icon size="size-8" name="tailwind" />
         </div>
         <text>
+          To see all the source code go to:{" "}
+          <a
+            href="https://github.com/Tanimal19/terminal-website"
+            className="text-accent-400 underline"
+          >
+            repo
+          </a>
+          <br />
           To see all avaliable commands run:
-          <text className="text-accent-400"> help</text>
+          <span className="text-accent-400"> help</span>
         </text>
       </div>
     </div>
@@ -298,25 +294,54 @@ function Banner() {
 
 const urlList = [
   "https://www.google.com",
-  "https://www.google.com",
-  "https://www.google.com",
   "https://www.github.com",
   "https://www.linkedin.com",
 ];
 
-function Contact() {
+function Hobby() {
   return (
     <div>
-      <text>
-        mail:
-        <a href="mailto:poyuncheng.bob@gmail.com">poyuncheng.bob@gmail.com</a>
-      </text>
+      <ul>
+        <li>💻 coding: especially front-end</li>
+        <li>🎮 video games: APEX for 2000 hrs</li>
+        <li>🏀 basketball: super fan of Curry</li>
+        <li>🎵 music: mainly Jpop & Kpop</li>
+        <li>blah, blah, blah</li>
+      </ul>
+    </div>
+  );
+}
+
+function Skill() {
+  return (
+    <div>
+      <text className="text-accent-400">😉 All right</text>
+      <ul>
+        <li>C, Python</li>
+        <li>Html, CSS, Javascript</li>
+      </ul>
+      <br />
+      <text className="text-accent-400">🫠 Only basic</text>
+      <ul>
+        <li>Next.js, React, Tailwind</li>
+        <li>Electron, Node.js</li>
+        <li>Figma</li>
+      </ul>
+    </div>
+  );
+}
+
+function Project() {
+  return (
+    <div>
+      <ul>
+        <li>- this terminal website!!!</li>
+        <li>- Victor - markdown editor</li>
+      </ul>
       <br />
       <text>
-        github: <a href=""></a>
+        see more run: <span className="text-accent-400">goto github</span>
       </text>
-      <text>twitter: </text>
-      <text>linkedin: Bob Cheng</text>
     </div>
   );
 }
