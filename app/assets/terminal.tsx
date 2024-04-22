@@ -295,7 +295,7 @@ function Banner() {
 const urlList = [
   "https://www.google.com",
   "https://github.com/Tanimal19",
-  "www.linkedin.com/in/bob-cheng-3731652b4",
+  "https://www.linkedin.com/in/bob-cheng-3731652b4",
 ];
 
 function Hobby() {
