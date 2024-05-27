@@ -315,7 +315,7 @@ function Hobby() {
 function Skill() {
   return (
     <div>
-      <text className="text-accent-400">😉 All right</text>
+      <text className="text-accent-400">😉 Nice</text>
       <ul>
         <li>C, Python</li>
         <li>Html, CSS, Javascript</li>
